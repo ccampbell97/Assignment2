@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include "person.h"
+
+using namespace std;
+
+void readData(Person *arr1, int size)
+{
+	int i;
+	string fName, lName;
+	float hours, rate;
+	ifstream dataFile;
+	dataFile.open("input.txt");
+	for (i = 0; i < size - 1; i++)
+	{
+		dataFile >> fName;
+		dataFile >> lName;
+		dataFile >> hours;
+		dataFile >> rate;
+		arr1[i].setFirstName(fName);
+		arr1[i].setLastName(lName);
+		arr1[i].setHoursWorked(hours);
+		arr1[i].setPayRate(rate);
+	}
+}
+
+void writeData(Person *arr1, int size)
+{
+	int i;
+	ofstream dataFile;
+	dataFile.open("output.txt");
+	for (i = 0; i < size - 1; i++)
+	{
+		dataFile << arr1[i].fullName() << " ";
+		dataFile << arr1[i].totalPay() << endl;
+	}
+}
+
+int checkFile()
+{
+	string temp;
+	int size = 0;
+	ifstream dataFile;
+	dataFile.open("input.txt");
+	while (dataFile)
+	{
+		getline(dataFile, temp);
+		size++;
+	}
+	return size;
+}
+
+int main()
+{
+	Person arr1[20];
+	int size = checkFile();
+	readData(arr1, size);
+	writeData(arr1, size);
+}
