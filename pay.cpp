@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void readData(Person *arr1, int size)
+int readData(Person *arr1, int size)
 {
 	int i;
 	string fName, lName;
@@ -14,6 +14,8 @@ void readData(Person *arr1, int size)
 	dataFile.open("input.txt");
 	for (i = 0; i < size - 1; i++)
 	{
+		if (dataFile.eof() == true)
+			return i;
 		dataFile >> fName;
 		dataFile >> lName;
 		dataFile >> hours;
@@ -23,6 +25,7 @@ void readData(Person *arr1, int size)
 		arr1[i].setHoursWorked(hours);
 		arr1[i].setPayRate(rate);
 	}
+	return size;
 }
 
 void writeData(Person *arr1, int size)
@@ -30,7 +33,7 @@ void writeData(Person *arr1, int size)
 	int i;
 	ofstream dataFile;
 	dataFile.open("output.txt");
-	for (i = 0; i < size - 1; i++)
+	for (i = 0; i < size; i++)
 	{
 		dataFile << arr1[i].fullName() << " ";
 		dataFile << arr1[i].totalPay() << endl;
@@ -54,7 +57,7 @@ int checkFile()
 int main()
 {
 	Person arr1[20];
-	int size = checkFile();
-	readData(arr1, size);
+	int size = 20;
+	size = readData(arr1, size);
 	writeData(arr1, size);
 }
