@@ -40,20 +40,6 @@ void writeData(Person *arr1, int size)
 	}
 }
 
-int checkFile()
-{
-	string temp;
-	int size = 0;
-	ifstream dataFile;
-	dataFile.open("input.txt");
-	while (dataFile)
-	{
-		getline(dataFile, temp);
-		size++;
-	}
-	return size;
-}
-
 int main()
 {
 	Person arr1[20];
