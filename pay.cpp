@@ -2,48 +2,51 @@
 #include <string>
 #include <fstream>
 #include "person.h"
+#include <vector>
 
 using namespace std;
 
-int readData(Person *arr1, int size)
+void readData(vector<Person> &vect)
 {
-	int i;
+	int i = 0;
+	Person employ;
 	string fName, lName;
 	float hours, rate;
 	ifstream dataFile;
 	dataFile.open("input.txt");
-	for (i = 0; i < size - 1; i++)
+	while (dataFile)
 	{
 		if (dataFile.eof() == true)
-			return i;
+			break;
 		dataFile >> fName;
 		dataFile >> lName;
-		dataFile >> hours;
 		dataFile >> rate;
-		arr1[i].setFirstName(fName);
-		arr1[i].setLastName(lName);
-		arr1[i].setHoursWorked(hours);
-		arr1[i].setPayRate(rate);
+		dataFile >> hours;
+		vect.emplace_back(fName, lName, rate, hours);
+		/*employ.setFirstName(fName);
+		employ.setLastName(lName);
+		employ.setHoursWorked(hours);
+		employ.setPayRate(rate);*/
+		vect.push_back(employ);
 	}
-	return size;
 }
 
-void writeData(Person *arr1, int size)
+void writeData(vector<Person> &vect)
 {
-	int i;
+	int i = 0;
 	ofstream dataFile;
 	dataFile.open("output.txt");
-	for (i = 0; i < size; i++)
+	for (i = 0; i < vect.size(); i++)
 	{
-		dataFile << arr1[i].fullName() << " ";
-		dataFile << arr1[i].totalPay() << endl;
+		dataFile << vect[i].fullName() << " ";
+		dataFile << vect[i].totalPay() << endl;
 	}
 }
 
 int main()
 {
-	Person arr1[20];
-	int size = 20;
-	size = readData(arr1, size);
-	writeData(arr1, size);
+	vector<Person> vect;
+	readData(vect);
+	writeData(vect);
+	return 0;
 }
