@@ -21,19 +21,7 @@ void readData(vector<Person> &vect)
 		dataFile >> lName;
 		dataFile >> rate;
 		dataFile >> hours;
-		//Person employ(fName, lName, rate, hours);
-		/*vect.emplace_back(fName, lName, rate, hours);
-		cout << vect[i].getFirstName() << endl;
-		cout << vect[i].getLastName() << endl;
-		cout << vect[i].getPayRate() << endl;
-		cout << vect[i].getHoursWorked() << endl;
-		i = i + 1;*/
-		/*employ.setFirstName(fName);
-		employ.setLastName(lName);
-		employ.setHoursWorked(hours);
-		employ.setPayRate(rate);*/
 		vect.emplace_back(Person(fName, lName, rate, hours));
-		//vect.emplace_back(employ);
 	}
 }
 
