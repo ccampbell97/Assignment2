@@ -1,4 +1,4 @@
-#include "person.cpp"
+#include "person.h"
 
 Person::Person()
 {
@@ -8,9 +8,12 @@ Person::Person()
 	hoursWorked = 0;
 }
 
-Person::Person(string firstName, string lastName, float payRate, float hoursWorked)
+Person::Person(string fName, string lName, float rate, float hours)
 {
-
+	firstName = fName;
+	lastName = lName;
+	payRate = rate;
+	hoursWorked = hours;
 }
 
 void Person::setLastName(string lName)

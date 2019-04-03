@@ -1,15 +1,14 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "person.h"
 #include <vector>
+#include "person.h"
 
 using namespace std;
 
 void readData(vector<Person> &vect)
 {
 	int i = 0;
-	Person employ;
 	string fName, lName;
 	float hours, rate;
 	ifstream dataFile;
@@ -22,12 +21,19 @@ void readData(vector<Person> &vect)
 		dataFile >> lName;
 		dataFile >> rate;
 		dataFile >> hours;
-		vect.emplace_back(fName, lName, rate, hours);
+		//Person employ(fName, lName, rate, hours);
+		/*vect.emplace_back(fName, lName, rate, hours);
+		cout << vect[i].getFirstName() << endl;
+		cout << vect[i].getLastName() << endl;
+		cout << vect[i].getPayRate() << endl;
+		cout << vect[i].getHoursWorked() << endl;
+		i = i + 1;*/
 		/*employ.setFirstName(fName);
 		employ.setLastName(lName);
 		employ.setHoursWorked(hours);
 		employ.setPayRate(rate);*/
-		vect.push_back(employ);
+		vect.emplace_back(Person(fName, lName, rate, hours));
+		//vect.emplace_back(employ);
 	}
 }
 
